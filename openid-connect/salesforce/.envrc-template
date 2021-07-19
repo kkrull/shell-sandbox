@@ -1,0 +1,2 @@
+export CLIENT_ID='<Fill in value from SalesForce Connected App Config>'
+export CLIENT_SECRET='<Fill in value from SalesForce Connected App Config>'
