@@ -16,5 +16,7 @@
     }
   },
   "frontMatter": "^%[\\s\\S][^#]*",
-  "ignores": [".shellcheckrc"]
+  "ignores": [
+    ".shellcheckrc"
+  ]
 }
