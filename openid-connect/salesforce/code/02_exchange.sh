@@ -37,4 +37,4 @@ curl -X POST "${token_endpoint}" \
   -d "code=${code}" \
   -d "grant_type=${grant_type}" \
   -d "redirect_uri=${redirect_uri_encoded}" \
-  $@
+  "$@"

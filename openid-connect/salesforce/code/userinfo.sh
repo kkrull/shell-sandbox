@@ -17,4 +17,4 @@ userinfo_endpoint='https://login.salesforce.com/services/oauth2/userinfo'
 curl "${userinfo_endpoint}" \
   --silent \
   -H "Authorization: Bearer ${access_token}" \
-  $@
+  "$@"
