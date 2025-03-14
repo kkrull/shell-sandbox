@@ -3,14 +3,14 @@ exclude: ^$
 repos:
   # https://github.com/editorconfig-checker/editorconfig-checker.python?tab=readme-ov-file#usage-with-the-pre-commit-git-hooks-framework
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: "2.7.3"
+    rev: "3.2.0"
     hooks:
       - id: editorconfig-checker
         alias: ec
 
   # https://github.com/DavidAnson/markdownlint-cli2#pre-commit
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.13.0
+    rev: v0.17.2
     hooks:
       - id: markdownlint-cli2
 
@@ -22,7 +22,7 @@ repos:
 
   # https://pre-commit.com/hooks.html
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-json
         exclude: .vscode/launch.json
