@@ -78,7 +78,10 @@ or better yet:
 
 ```shell
 # ~/git
-find kkrull.github.com bitovi.github.com -type f -name 'index[.][jt]s' -or -name 'index[.][jt]sx' | grep -v '[.]git/' | grep -v 'node_modules'
+find bitovi.github.com kkrull.github.com -type f \
+  -name 'index[.][jt]s' -or -name 'index[.][jt]sx' \
+  | grep -v '[.]git/' \
+  | grep -v 'node_modules'
 ```
 
 ### A new tool could help
