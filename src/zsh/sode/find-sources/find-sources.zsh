@@ -3,12 +3,13 @@
 # https://stackoverflow.com/a/56311706/112682
 emulate -LR zsh
 set -euo pipefail
+while IFS= read -d $'\0' -r f; do
+  source "$f"
+done < <(find "$_SODE_HOME/lib" -type f -iname '*.zsh' -print0 | sort -nz)
 
 ## Shared environment
 
-# export _SODE_HOME="${0:A:h}"
-export _SODE_INVOCATION="${0:t}"
-# export _SODE_INVOCATION="${_SODE_INVOCATION} add"
+export _SODE_INVOCATION="${_SODE_INVOCATION} find-sources"
 
 ## Local environment
 
@@ -33,10 +34,7 @@ function main() {
   fi
 
   local pattern="$1" ; shift 1
-
-  find "$@" -type f -name "$pattern" \
-    | grep -v '[.]git/' \
-    | grep -v 'node_modules'
+  _sourcecmd_find "$pattern" "$@"
 }
 
 function print_usage() {
@@ -47,6 +45,8 @@ $_SODE_INVOCATION <pattern> <path> [...]
 
 OPTIONS
 --help        Show help
+
+See \`man ${_SODE_INVOCATION// /-}\` for details.
 EOF
 }
 
