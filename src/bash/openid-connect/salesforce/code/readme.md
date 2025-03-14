@@ -5,7 +5,6 @@ Establishing how an OpenID Connect workflow works for SalesForce.
 __Follow the setup instructions in the parent directory, so `direnv` can provide
 secrets.__
 
-
 ## Workflow
 
 Call the scripts in order to authorize, then call one of the remaining scripts

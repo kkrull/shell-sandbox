@@ -1,0 +1,27 @@
+# https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = false
+
+[LICENSE]
+indent_size = off
+
+[Makefile]
+# Indentation outside of a target's commands must be spaces, leading to mixed tabs/spaces
+# https://stackoverflow.com/a/4713737/112682
+indent_size =
+indent_style =
+
+[*.md]
+indent_size = off
+max_line_length = off
+trim_trailing_whitespace = false
+
+[*.{sh,zsh}]
+quote_type = single

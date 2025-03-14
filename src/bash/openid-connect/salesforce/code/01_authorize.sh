@@ -42,7 +42,7 @@ case "$mode" in
       --dump-header - \
       --silent \
       --show-error \
-      $@ \
+      "$@" \
       | grep Location \
       | sed 's/Location: //'
     ;;
@@ -52,6 +52,6 @@ case "$mode" in
       --dump-header - \
       --silent \
       --show-error \
-      $@ \
+      "$@" \
     ;;
 esac
