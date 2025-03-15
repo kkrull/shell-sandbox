@@ -86,7 +86,7 @@ clean:
 .PHONY: install
 install: install-bins install-datadirpkg install-executable install-libs #> Install program and links
 	install $(INSTALLFLAGS) -d $(bindir)
-	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
+	install $(INSTALLFLAGS) -v -l as -m 0755 $(libexecdirpkg)/$(executable) $(bindir)/sode
 
 .PHONY: install-bins
 install-bins:
