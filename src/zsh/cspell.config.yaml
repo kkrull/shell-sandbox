@@ -2,23 +2,22 @@ $schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell
 dictionaries: []
 dictionaryDefinitions: []
 enableFiletypes:
-  - github-actions-workflow
-  - json
   - makefile
   - markdown
   - plaintext
-  - shellscript
   - text
   - yaml
 ignorePaths:
   - .gitignore
   - cspell.config.yaml
 ignoreWords: []
-import: []
+import:
+  - ../../cspell.config.yaml
 version: "0.2"
 words:
-  - autoupdate
-  - kkrull
-  - Krull
-  - NOTPARALLEL
+  - Brode
+  - datadirpkg
+  - INSTALLFLAGS
+  - libexecdirpkg
   - sode
+  - versionfile

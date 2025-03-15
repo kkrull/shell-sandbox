@@ -7,15 +7,15 @@ default: all
 
 # NB: the wildcard function is not recursive: https://stackoverflow.com/a/2483203/112682
 source_main := sode.zsh
+source_version := version
 sources := $(shell find . -type f -name '*.zsh' | sort)
-versionfile := version
 
 .PHONY: debug-sources
 debug-sources:
 	$(info Sources:)
 	$(info - source_main: $(source_main))
+	$(info - source_version: $(source_version))
 	$(info - sources: $(sources))
-	$(info - versionfile: $(versionfile))
 	@:
 
 ## Artifacts
@@ -87,7 +87,7 @@ clean:
 .PHONY: install
 install: $(executable) | $(bindir) $(datadirpkg) $(libexecdirpkg) #> Install program
 	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
-	install $(INSTALLFLAGS) -m 0644 $(versionfile) $(datadirpkg)
+	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
 	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
 	@:
 
