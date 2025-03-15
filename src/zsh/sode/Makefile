@@ -104,6 +104,7 @@ install-datadirpkg:
 install-executable: $(executable)
 	$(INSTALL) $(INSTALLFLAGS) -d $(libexecdirpkg)
 	$(INSTALL) $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
+	$(INSTALL) $(INSTALLFLAGS) -m 0644 $(source_version) $(libexecdirpkg)
 
 .PHONY: install-libs
 install-libs:
