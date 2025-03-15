@@ -1,12 +1,11 @@
 # https://pre-commit.com/index.html#adding-pre-commit-plugins-to-your-project
-exclude: ^$
+#exclude: ^$
 repos:
   # https://github.com/editorconfig-checker/editorconfig-checker.python?tab=readme-ov-file#usage-with-the-pre-commit-git-hooks-framework
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     rev: "3.2.0"
     hooks:
       - id: editorconfig-checker
-        alias: ec
 
   # https://github.com/DavidAnson/markdownlint-cli2#pre-commit
   - repo: https://github.com/DavidAnson/markdownlint-cli2

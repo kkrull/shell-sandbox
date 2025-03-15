@@ -18,7 +18,9 @@ import: []
 version: "0.2"
 words:
   - autoupdate
+  - checkmake
   - kkrull
   - Krull
   - NOTPARALLEL
+  - shellcheck
   - sode
