@@ -42,7 +42,7 @@ function main() {
   case "$command" in
   'find-sources')
     shift 1
-    exec "$_SODE_HOME/find-sources/find-sources.zsh" "$@"
+    exec "$_SODE_HOME/bin/find-sources.zsh" "$@"
     ;;
 
   *)
