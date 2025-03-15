@@ -6,7 +6,7 @@ default: all
 ## Sources
 
 # NB: the wildcard function is not recursive: https://stackoverflow.com/a/2483203/112682
-source_cmds := $(shell find find-sources -type f -name '*.zsh' | sort)
+source_bins := $(shell find bin -type f -name '*.zsh' | sort)
 source_libs := $(shell find lib -type f -name '*.zsh' | sort)
 source_main := sode.zsh
 source_version := version
@@ -15,7 +15,7 @@ sources := $(shell find . -type f -name '*.zsh' | sort)
 .PHONY: debug-sources
 debug-sources:
 	$(info Sources:)
-	$(info - source_cmds: $(source_cmds))
+	$(info - source_bins: $(source_bins))
 	$(info - source_libs: $(source_libs))
 	$(info - source_main: $(source_main))
 	$(info - source_version: $(source_version))
@@ -102,11 +102,10 @@ install-bindir: install-libexecdirpkg | $(bindir)
 install-datadirpkg: | $(datadirpkg)
 	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
 
-#TODO KDK: Flatten directory structure in repository, then update destination directories here
 .PHONY: install-libexecdirpkg
 install-libexecdirpkg: | $(libexecdirpkg)
-	install $(INSTALLFLAGS) -d -m 0755 $(source_cmds) $(libexecdirpkg)/bin
-	install $(INSTALLFLAGS) -d -m 0644 $(source_libs) $(libexecdirpkg)/lib
+	install $(INSTALLFLAGS) -d -m 0755 bin $(libexecdirpkg)/bin
+	install $(INSTALLFLAGS) -d -m 0644 lib $(libexecdirpkg)/lib
 	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
 
 .PHONY: test
