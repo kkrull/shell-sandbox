@@ -11,12 +11,9 @@ default: all
 
 ## Programs
 
-SBT := sbt
-
 .PHONY: debug-programs
 debug-programs:
 	$(info Programs:)
-	$(info - SBT: $(SBT))
 	@:
 
 ## Project
@@ -79,7 +76,7 @@ debug: _debug-prefix debug-programs debug-project $(SUBDIRS) #> Show debugging i
 
 .PHONY: _debug-prefix
 _debug-prefix:
-	$(info ==Scala Sandbox==)
+	$(info ==Shell Sandbox==)
 	@:
 
 .PHONY: help

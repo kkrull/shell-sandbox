@@ -6,12 +6,16 @@ default: all
 ## Sources
 
 # NB: the wildcard function is not recursive: https://stackoverflow.com/a/2483203/112682
+source_main := sode.zsh
 sources := $(shell find . -type f -name '*.zsh' | sort)
+versionfile := version
 
 .PHONY: debug-sources
 debug-sources:
 	$(info Sources:)
+	$(info - source_main: $(source_main))
 	$(info - sources: $(sources))
+	$(info - versionfile: $(versionfile))
 	@:
 
 ## Artifacts
@@ -23,16 +27,50 @@ debug-artifacts:
 
 ## Paths
 
+prefix ?= /usr/local
+exec_prefix ?= $(prefix)
+
+# Executable programs that users can run (including symlinks)
+bindir := $(exec_prefix)/bin
+$(bindir):
+	mkdir -p $(bindir)
+
+# Executable programs to be run by other programs, in a subdirectory thereof
+libexecdir := $(exec_prefix)/libexec
+
+libexecdirpkg := $(libexecdir)/sode
+$(libexecdirpkg):
+	mkdir -p $(libexecdirpkg)
+
+# Read-only architecture-independent data files, in a subdirectory thereof
+datarootdir := $(prefix)/share
+datadir := $(datarootdir)
+
+datadirpkg := $(datadir)/sode
+$(datadirpkg):
+	mkdir -p $(datadirpkg)
+
 .PHONY: debug-paths
 debug-paths:
 	$(info Paths:)
+	$(info - bindir: $(bindir))
+	$(info - datadir: $(datadir))
+	$(info - datadirpkg: $(datadirpkg))
+	$(info - datarootdir: $(datarootdir))
+	$(info - exec_prefix: $(exec_prefix))
+	$(info - libexecdir: $(libexecdir))
+	$(info - libexecdirpkg: $(libexecdirpkg))
+	$(info - prefix: $(prefix))
 	@:
 
 ## Programs
 
+INSTALLFLAGS := -g 0 -o 0
+
 .PHONY: debug-programs
 debug-programs:
 	$(info Programs:)
+	$(info - INSTALLFLAGS: $(INSTALLFLAGS))
 	@:
 
 #. STANDARD TARGETS
@@ -43,20 +81,25 @@ all: #> Build all artifacts
 	@:
 
 .PHONY: clean
-clean: #> Remove files built from these sources
+clean:
 	@:
 
 .PHONY: install
-install:
+install: $(executable) | $(bindir) $(datadirpkg) $(libexecdirpkg) #> Install program
+	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
+	install $(INSTALLFLAGS) -m 0644 $(versionfile) $(datadirpkg)
+	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
 	@:
 
 .PHONY: test
-test: #> Run tests
+test:
 	@:
 
 .PHONY: uninstall
-uninstall:
-	@:
+uninstall: #> Uninstall program
+	$(RM) $(bindir)/sode
+	$(RM) -R $(datadirpkg)
+	$(RM) -R $(libexecdirpkg)
 
 #. SUPPORT TARGETS
 
