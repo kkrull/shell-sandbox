@@ -20,9 +20,12 @@ debug-sources:
 
 ## Artifacts
 
+executable := sode.zsh
+
 .PHONY: debug-artifacts
 debug-artifacts:
 	$(info Artifacts:)
+	$(info - executable: $(executable))
 	@:
 
 ## Paths
