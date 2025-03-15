@@ -6,6 +6,8 @@ default: all
 ## Sources
 
 # NB: the wildcard function is not recursive: https://stackoverflow.com/a/2483203/112682
+source_cmds := $(shell find find-sources -type f -name '*.zsh' | sort)
+source_libs := $(shell find lib -type f -name '*.zsh' | sort)
 source_main := sode.zsh
 source_version := version
 sources := $(shell find . -type f -name '*.zsh' | sort)
@@ -13,6 +15,8 @@ sources := $(shell find . -type f -name '*.zsh' | sort)
 .PHONY: debug-sources
 debug-sources:
 	$(info Sources:)
+	$(info - source_cmds: $(source_cmds))
+	$(info - source_libs: $(source_libs))
 	$(info - source_main: $(source_main))
 	$(info - source_version: $(source_version))
 	$(info - sources: $(sources))
@@ -68,7 +72,7 @@ debug-paths:
 
 ## Programs
 
-INSTALLFLAGS := -g 0 -o 0
+INSTALLFLAGS := -g 0 -o 0 -v
 
 .PHONY: debug-programs
 debug-programs:
@@ -87,11 +91,14 @@ all: #> Build all artifacts
 clean:
 	@:
 
+#TODO KDK: Preserve directory structure for lib/fs.zsh and find-sources/find-sources.zsh (or flatten directories)
 .PHONY: install
 install: $(executable) | $(bindir) $(datadirpkg) $(libexecdirpkg) #> Install program
-	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
 	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
+	install $(INSTALLFLAGS) -m 0755 $(source_cmds) $(libexecdirpkg)
+	install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)
 	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
+	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
 	@:
 
 .PHONY: test
