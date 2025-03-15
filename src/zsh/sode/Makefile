@@ -92,23 +92,26 @@ clean:
 	@:
 
 .PHONY: install
-install: $(executable) install-datadirpkg install-libexecdirpkg install-bindir #> Install program
-
-.PHONY: install-bindir
-install-bindir: install-libexecdirpkg | $(bindir)
+install: install-datadirpkg install-bins install-executable install-libs #> Install program and links
 	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
 
 .PHONY: install-datadirpkg
 install-datadirpkg: | $(datadirpkg)
 	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
 
-.PHONY: install-libexecdirpkg
-install-libexecdirpkg: | $(libexecdirpkg)
-	install $(INSTALLFLAGS) -d -m 0755 $(libexecdirpkg)/bin
+.PHONY: install-bins
+install-bins: | $(libexecdirpkg)
+	install $(INSTALLFLAGS) -d $(libexecdirpkg)/bin
 	install $(INSTALLFLAGS) -m 0755 $(source_bins) $(libexecdirpkg)/bin
-	install $(INSTALLFLAGS) -d -m 0644 $(libexecdirpkg)/lib
-	install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)/lib
+
+.PHONY: install-executable
+install-executable: $(executable) | $(libexecdirpkg)
 	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
+
+.PHONY: install-libs
+install-libs: | $(libexecdirpkg)
+	install $(INSTALLFLAGS) -d $(libexecdirpkg)/lib
+	install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)/lib
 
 .PHONY: test
 test:
