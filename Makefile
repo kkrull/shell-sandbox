@@ -1,4 +1,4 @@
-#. ==Scala Sandbox==
+#. ==Shell Sandbox==
 
 .PHONY: default
 default: all
@@ -22,11 +22,7 @@ debug-programs:
 ## Project
 
 # https://stackoverflow.com/a/17845120/112682
-SUBDIRS := \
-	programming-in-scala-2 \
-	programming-in-scala-4 \
-	sbt-by-example \
-	scalatest-3
+SUBDIRS := src/zsh/sode
 
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):
@@ -57,12 +53,6 @@ pre-commit-run: #> Run pre-commit on all sources
 .PHONY: pre-commit-update
 pre-commit-update: #> Update pre-commit plugins
 	$(PRECOMMIT) autoupdate
-
-#. SBT TARGETS
-
-.PHONY: console
-console: #> Start an interactive session of the scala interpreter
-	$(SBT) --allow-empty -Dsbt.version=1.10.7 console
 
 #. STANDARD TARGETS
 
