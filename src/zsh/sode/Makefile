@@ -64,11 +64,13 @@ debug-paths:
 
 ## Programs
 
+INSTALL := install
 INSTALLFLAGS := -g 0 -o 0
 
 .PHONY: debug-programs
 debug-programs:
 	$(info Programs:)
+	$(info - INSTALL: $(INSTALL))
 	$(info - INSTALLFLAGS: $(INSTALLFLAGS))
 	@:
 
@@ -85,28 +87,28 @@ clean:
 
 .PHONY: install
 install: install-bins install-datadirpkg install-executable install-libs #> Install program and links
-	install $(INSTALLFLAGS) -d $(bindir)
-	install $(INSTALLFLAGS) -v -l as -m 0755 $(libexecdirpkg)/$(executable) $(bindir)/sode
+	$(INSTALL) $(INSTALLFLAGS) -d $(bindir)
+	$(INSTALL) $(INSTALLFLAGS) -l as -m 0755 $(libexecdirpkg)/$(executable) $(bindir)/sode
 
 .PHONY: install-bins
 install-bins:
-	install $(INSTALLFLAGS) -d $(libexecdirpkg)/bin
-	install $(INSTALLFLAGS) -m 0755 $(source_bins) $(libexecdirpkg)/bin
+	$(INSTALL) $(INSTALLFLAGS) -d $(libexecdirpkg)/bin
+	$(INSTALL) $(INSTALLFLAGS) -m 0755 $(source_bins) $(libexecdirpkg)/bin
 
 .PHONY: install-datadirpkg
 install-datadirpkg:
-	install $(INSTALLFLAGS) -d $(datadirpkg)
-	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
+	$(INSTALL) $(INSTALLFLAGS) -d $(datadirpkg)
+	$(INSTALL) $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
 
 .PHONY: install-executable
 install-executable: $(executable)
-	install $(INSTALLFLAGS) -d $(libexecdirpkg)
-	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
+	$(INSTALL) $(INSTALLFLAGS) -d $(libexecdirpkg)
+	$(INSTALL) $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
 
 .PHONY: install-libs
 install-libs:
-	install $(INSTALLFLAGS) -d $(libexecdirpkg)/lib
-	install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)/lib
+	$(INSTALL) $(INSTALLFLAGS) -d $(libexecdirpkg)/lib
+	$(INSTALL) $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)/lib
 
 .PHONY: test
 test:
