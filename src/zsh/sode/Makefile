@@ -91,16 +91,23 @@ all: #> Build all artifacts
 clean:
 	@:
 
-# install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
-# install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)
-# install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
-# ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
-
-#TODO KDK: Flatten directory structure in repository, then make sub-targets for bin/ and lib/
 .PHONY: install
-install: $(executable) | $(bindir) $(datadirpkg) $(libexecdirpkg) #> Install program
-	install $(INSTALLFLAGS) -D $(libexecdirpkg) -m 0755 $(source_cmds) $(libexecdirpkg)
-	@:
+install: $(executable) install-datadirpkg install-libexecdirpkg install-bindir #> Install program
+
+.PHONY: install-bindir
+install-bindir: install-libexecdirpkg | $(bindir)
+	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
+
+.PHONY: install-datadirpkg
+install-datadirpkg: | $(datadirpkg)
+	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
+
+#TODO KDK: Flatten directory structure in repository, then update destination directories here
+.PHONY: install-libexecdirpkg
+install-libexecdirpkg: | $(libexecdirpkg)
+	install $(INSTALLFLAGS) -d -m 0755 $(source_cmds) $(libexecdirpkg)/bin
+	install $(INSTALLFLAGS) -d -m 0644 $(source_libs) $(libexecdirpkg)/lib
+	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
 
 .PHONY: test
 test:
