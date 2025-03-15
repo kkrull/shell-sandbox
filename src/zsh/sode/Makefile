@@ -39,23 +39,15 @@ exec_prefix ?= $(prefix)
 
 # Executable programs that users can run (including symlinks)
 bindir := $(exec_prefix)/bin
-$(bindir):
-	mkdir -p $(bindir)
 
 # Executable programs to be run by other programs, in a subdirectory thereof
 libexecdir := $(exec_prefix)/libexec
-
 libexecdirpkg := $(libexecdir)/sode
-$(libexecdirpkg):
-	mkdir -p $(libexecdirpkg)
 
 # Read-only architecture-independent data files, in a subdirectory thereof
 datarootdir := $(prefix)/share
 datadir := $(datarootdir)
-
 datadirpkg := $(datadir)/sode
-$(datadirpkg):
-	mkdir -p $(datadirpkg)
 
 .PHONY: debug-paths
 debug-paths:
@@ -72,7 +64,7 @@ debug-paths:
 
 ## Programs
 
-INSTALLFLAGS := -g 0 -o 0 -v
+INSTALLFLAGS := -g 0 -o 0
 
 .PHONY: debug-programs
 debug-programs:
@@ -92,24 +84,27 @@ clean:
 	@:
 
 .PHONY: install
-install: install-datadirpkg install-bins install-executable install-libs #> Install program and links
+install: install-bins install-datadirpkg install-executable install-libs #> Install program and links
+	install $(INSTALLFLAGS) -d $(bindir)
 	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
 
-.PHONY: install-datadirpkg
-install-datadirpkg: | $(datadirpkg)
-	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
-
 .PHONY: install-bins
-install-bins: | $(libexecdirpkg)
+install-bins:
 	install $(INSTALLFLAGS) -d $(libexecdirpkg)/bin
 	install $(INSTALLFLAGS) -m 0755 $(source_bins) $(libexecdirpkg)/bin
 
+.PHONY: install-datadirpkg
+install-datadirpkg:
+	install $(INSTALLFLAGS) -d $(datadirpkg)
+	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
+
 .PHONY: install-executable
-install-executable: $(executable) | $(libexecdirpkg)
+install-executable: $(executable)
+	install $(INSTALLFLAGS) -d $(libexecdirpkg)
 	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
 
 .PHONY: install-libs
-install-libs: | $(libexecdirpkg)
+install-libs:
 	install $(INSTALLFLAGS) -d $(libexecdirpkg)/lib
 	install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)/lib
 
@@ -155,5 +150,5 @@ install-tools:
 .PHONY: test-install
 test-install: #> List installed files after running `make install`
 	ls -l $(bindir)/sode
-	find $(datadirpkg) -type f
-	find $(libexecdirpkg) -type f
+	find $(datadirpkg) -type f | sort
+	find $(libexecdirpkg) -type f | sort
