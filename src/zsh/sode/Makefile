@@ -91,14 +91,15 @@ all: #> Build all artifacts
 clean:
 	@:
 
-#TODO KDK: Preserve directory structure for lib/fs.zsh and find-sources/find-sources.zsh (or flatten directories)
+# install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
+# install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)
+# install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
+# ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
+
+#TODO KDK: Flatten directory structure in repository, then make sub-targets for bin/ and lib/
 .PHONY: install
 install: $(executable) | $(bindir) $(datadirpkg) $(libexecdirpkg) #> Install program
-	install $(INSTALLFLAGS) -m 0644 $(source_version) $(datadirpkg)
-	install $(INSTALLFLAGS) -m 0755 $(source_cmds) $(libexecdirpkg)
-	install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)
-	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
-	ln -f -s $(libexecdirpkg)/$(executable) $(bindir)/sode
+	install $(INSTALLFLAGS) -D $(libexecdirpkg) -m 0755 $(source_cmds) $(libexecdirpkg)
 	@:
 
 .PHONY: test
