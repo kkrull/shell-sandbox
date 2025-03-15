@@ -6,8 +6,8 @@ default: all
 ## Sources
 
 # NB: the wildcard function is not recursive: https://stackoverflow.com/a/2483203/112682
-source_bins := $(shell find ./bin -type f -name '*.zsh' | sort)
-source_libs := $(shell find ./lib -type f -name '*.zsh' | sort)
+source_bins := $(shell find bin -type f -name '*.zsh' | sort)
+source_libs := $(shell find lib -type f -name '*.zsh' | sort)
 source_main := sode.zsh
 source_version := version
 sources := $(shell find . -type f -name '*.zsh' | sort)
@@ -104,8 +104,10 @@ install-datadirpkg: | $(datadirpkg)
 
 .PHONY: install-libexecdirpkg
 install-libexecdirpkg: | $(libexecdirpkg)
-	install $(INSTALLFLAGS) -d -m 0755 bin $(libexecdirpkg)/bin
-	install $(INSTALLFLAGS) -d -m 0644 lib $(libexecdirpkg)/lib
+	install $(INSTALLFLAGS) -d -m 0755 $(libexecdirpkg)/bin
+	install $(INSTALLFLAGS) -m 0755 $(source_bins) $(libexecdirpkg)/bin
+	install $(INSTALLFLAGS) -d -m 0644 $(libexecdirpkg)/lib
+	install $(INSTALLFLAGS) -m 0644 $(source_libs) $(libexecdirpkg)/lib
 	install $(INSTALLFLAGS) -m 0755 $(executable) $(libexecdirpkg)
 
 .PHONY: test
@@ -150,5 +152,5 @@ install-tools:
 .PHONY: test-install
 test-install: #> List installed files after running `make install`
 	ls -l $(bindir)/sode
-	find $(datadirpkg)
-	find $(libexecdirpkg)
+	find $(datadirpkg) -type f
+	find $(libexecdirpkg) -type f
