@@ -20,4 +20,6 @@ words:
   - INSTALLFLAGS
   - libexecdirpkg
   - sode
+  - sourcecmd
   - versionfile
+  - zparseopts
