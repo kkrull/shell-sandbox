@@ -25,7 +25,9 @@ function main() {
   fi
 
   #TODO KDK: Get clientId et al from environment (e.g. direnv local)
-  _soundcloudcmd_authorize "$clientId" $clientSecret"
+  clientId='clientId:bogus'
+  clientSecret='clientSecret:bogus'
+  _soundcloudcmd_authorize "$clientId" "$clientSecret"
 }
 
 function print_usage() {

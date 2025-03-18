@@ -40,3 +40,14 @@ repos:
     rev: v0.10.0.1
     hooks:
       - id: shellcheck
+        alias: shellcheck-bash
+        exclude: src/zsh
+        name: shellcheck [bash]
+        args:
+        - --rcfile=src/bash/.shellcheckrc
+      - id: shellcheck
+        alias: shellcheck-zsh
+        exclude: src/bash
+        name: shellcheck [zsh]
+        args:
+        - --rcfile=src/zsh/.shellcheckrc
