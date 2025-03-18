@@ -11,6 +11,7 @@ repos:
     rev: v0.17.2
     hooks:
       - id: markdownlint-cli2
+        exclude: .*[.][1-7][.]md$
 
   # https://github.com/mrtazz/checkmake#pre-commit-usage
   - repo: https://github.com/mrtazz/checkmake.git

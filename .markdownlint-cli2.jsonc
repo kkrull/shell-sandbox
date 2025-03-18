@@ -17,7 +17,6 @@
   },
   "frontMatter": "^%[\\s\\S][^#]*",
   "ignores": [
-    ".shellcheckrc",
-    "src/bin/zsh/sode/bin/**"
+    ".shellcheckrc"
   ]
 }
