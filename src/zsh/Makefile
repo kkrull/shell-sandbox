@@ -41,6 +41,7 @@ all: $(SUBDIRS) #> Build all projects
 .PHONY: clean
 clean: $(SUBDIRS) #> Remove local build files
 
+#TODO KDK: Add targets to install manuals (or put that in an adjacent project)
 .PHONY: install
 install: $(SUBDIRS) #> Copy artifacts to shared location
 
