@@ -12,11 +12,20 @@ trim_trailing_whitespace = false
 [LICENSE]
 indent_size = off
 
-[Makefile]
+## GNU Make
+
 # Indentation outside of a target's commands must be spaces, leading to mixed tabs/spaces
 # https://stackoverflow.com/a/4713737/112682
+
+[Makefile]
 indent_size =
 indent_style =
+
+[*.mk]
+indent_size =
+indent_style =
+
+## Markdown
 
 [*.md]
 indent_size = off

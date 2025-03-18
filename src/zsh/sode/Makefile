@@ -3,6 +3,8 @@
 .PHONY: default
 default: all
 
+include ../../../make.d/help.mk ../../../make.d/paths-system.mk
+
 ## Sources
 
 # NB: the wildcard function is not recursive: https://stackoverflow.com/a/2483203/112682
@@ -34,32 +36,12 @@ debug-artifacts:
 
 ## Paths
 
-prefix ?= /usr/local
-exec_prefix ?= $(prefix)
-
-# Executable programs that users can run (including symlinks)
-bindir := $(exec_prefix)/bin
-
-# Executable programs to be run by other programs, in a subdirectory thereof
-libexecdir := $(exec_prefix)/libexec
-libexecdirpkg := $(libexecdir)/sode
-
-# Read-only architecture-independent data files, in a subdirectory thereof
-datarootdir := $(prefix)/share
-datadir := $(datarootdir)
-datadirpkg := $(datadir)/sode
-
 .PHONY: debug-paths
 debug-paths:
 	$(info Paths:)
 	$(info - bindir: $(bindir))
-	$(info - datadir: $(datadir))
 	$(info - datadirpkg: $(datadirpkg))
-	$(info - datarootdir: $(datarootdir))
-	$(info - exec_prefix: $(exec_prefix))
-	$(info - libexecdir: $(libexecdir))
 	$(info - libexecdirpkg: $(libexecdirpkg))
-	$(info - prefix: $(prefix))
 	@:
 
 ## Programs
@@ -78,7 +60,7 @@ debug-programs:
 
 .NOTPARALLEL: all
 .PHONY: all
-all: #> Build all artifacts
+all:
 	@:
 
 .PHONY: clean
@@ -132,15 +114,6 @@ debug: _debug-prefix debug-artifacts debug-paths debug-programs debug-sources #>
 _debug-prefix:
 	$(info ==(Brode)sode==)
 	@:
-
-# https://stackoverflow.com/a/47107132/112682
-.PHONY: help
-help: #> Show this help
-	@sed -n \
-		-e '/@sed/!s/#[.] */_margin_\n/p' \
-		-e '/@sed/!s/:.*#> /:/p' \
-		$(MAKEFILE_LIST) \
-	| column -ts : | sed -e 's/_margin_//'
 
 .PHONY: install-assets
 install-assets:

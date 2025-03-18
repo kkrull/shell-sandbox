@@ -3,6 +3,8 @@
 .PHONY: default
 default: all
 
+include ../../make.d/help.mk ../../make.d/pre-commit.mk
+
 ## Sources
 
 ## Artifacts
@@ -19,7 +21,7 @@ debug-programs:
 ## Project
 
 # https://stackoverflow.com/a/17845120/112682
-SUBDIRS := src/zsh
+SUBDIRS := sode
 
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):
@@ -31,15 +33,13 @@ debug-project:
 	$(info - SUBDIRS: $(SUBDIRS))
 	@:
 
-include make.d/help.mk make.d/pre-commit.mk
-
 #. STANDARD TARGETS
 
 .PHONY: all
 all: $(SUBDIRS) #> Build all projects
 
 .PHONY: clean
-clean: pre-commit-gc $(SUBDIRS) #> Remove local build files
+clean: $(SUBDIRS) #> Remove local build files
 
 .PHONY: install
 install: $(SUBDIRS) #> Copy artifacts to shared location
@@ -58,11 +58,11 @@ debug: _debug-prefix debug-programs debug-project $(SUBDIRS) #> Show debugging i
 
 .PHONY: _debug-prefix
 _debug-prefix:
-	$(info ==Shell Sandbox==)
+	$(info ==zsh scripts==)
 	@:
 
 .PHONY: install-assets
 install-assets: $(SUBDIRS)
 
 .PHONY: install-tools
-install-tools: pre-commit-install $(SUBDIRS) #> Install development tools
+install-tools: $(SUBDIRS) #> Install development tools
