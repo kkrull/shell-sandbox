@@ -15,8 +15,12 @@ import:
   - ../../cspell.config.yaml
 version: "0.2"
 words:
+  - bambam
+  - bitovi
   - Brode
   - datadirpkg
+  - frontends
+  - fscmd
   - INSTALLFLAGS
   - libexecdirpkg
   - sode
