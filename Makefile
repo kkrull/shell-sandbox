@@ -31,7 +31,7 @@ debug-project:
 	$(info - SUBDIRS: $(SUBDIRS))
 	@:
 
-include make.d/help.mk make.d/pre-commit.mk
+include make.d/direnv.mk make.d/help.mk make.d/pre-commit.mk
 
 #. STANDARD TARGETS
 

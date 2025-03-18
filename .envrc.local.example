@@ -1,0 +1,7 @@
+## direnv: machine-specific settings
+# https://direnv.net/
+
+## SoundCloud API
+
+export CLIENT_ID='unset-client-id'
+export CLIENT_SECRET='unset-client-secret'

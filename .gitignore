@@ -1,2 +1,8 @@
+## Direnv
+
+# Machine-specific configuration
+.envrc.local
+
 ## VS Code
+
 *.code-workspace
