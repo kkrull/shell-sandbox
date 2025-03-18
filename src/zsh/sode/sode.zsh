@@ -34,15 +34,15 @@ function main() {
     exit 0
   elif [[ $# == 1 && -n "$version_option" ]]
   then
-    _fs_sode_version
+    _sode_version
     exit 0
   fi
 
   command="$1"
   case "$command" in
-  'find-sources')
+  'fs')
     shift 1
-    exec "$_SODE_HOME/bin/find-sources.zsh" "$@"
+    exec "$_SODE_HOME/bin/fs.zsh" "$@"
     ;;
 
   *)
@@ -63,7 +63,7 @@ OPTIONS
 --version     Show version
 
 COMMANDS
-find-sources    Search for source files
+fs            Hack the local file system
 
 See \`man ${_SODE_INVOCATION// /-}\` for details.
 EOF

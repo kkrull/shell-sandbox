@@ -1,5 +1,4 @@
 # https://pre-commit.com/index.html#adding-pre-commit-plugins-to-your-project
-#exclude: ^$
 repos:
   # https://github.com/editorconfig-checker/editorconfig-checker.python?tab=readme-ov-file#usage-with-the-pre-commit-git-hooks-framework
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
@@ -18,13 +17,21 @@ repos:
     rev: 0.2.2
     hooks:
       - id: checkmake
+        alias: checkmake
+        exclude: .*[.]mk$
+        name: checkmake [Makefile]
+      - id: checkmake
+        alias: checkmake-module
+        exclude: Makefile$
+        name: checkmake [Makefile includes]
+        args:
+        - --config=.checkmake-module.ini
 
   # https://pre-commit.com/hooks.html
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: check-json
-        exclude: .vscode/launch.json
       - id: check-yaml
       - id: trailing-whitespace
 

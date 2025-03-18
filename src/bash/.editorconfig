@@ -1,0 +1,4 @@
+root = false
+
+[*.sh]
+quote_type = single
