@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-# https://stackoverflow.com/a/56311706/112682
 emulate -LR zsh
 set -euo pipefail
 while IFS= read -d $'\0' -r f; do
@@ -9,7 +8,7 @@ done < <(find "$_SODE_HOME/lib" -type f -iname '*.zsh' -print0 | sort -nz)
 
 ## Shared environment
 
-export _SODE_INVOCATION="${_SODE_INVOCATION} find-sources"
+export _SODE_INVOCATION="${_SODE_INVOCATION} find"
 
 ## Local environment
 
@@ -34,7 +33,7 @@ function main() {
   fi
 
   local pattern="$1" ; shift 1
-  _sourcecmd_find "$pattern" "$@"
+  _fscmd_find "$pattern" "$@"
 }
 
 function print_usage() {
@@ -52,6 +51,4 @@ EOF
 
 ## Main
 
-# Make sure the script exits, even if main doesn't
-# https://unix.stackexchange.com/a/449508/37734
 main "$@"; exit

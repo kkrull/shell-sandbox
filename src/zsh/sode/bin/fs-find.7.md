@@ -1,14 +1,14 @@
 # NAME
 
-**find-sources** - Find source files
+**fs-find** - Find source files
 
 # DESCRIPTION
 
-**find-sources** helps you search for source files among several Git repositories that you have
+**fs** helps you search for source files among several Git repositories that you have
 cloned.
 
 This is useful when you don't know ahead of time which specific repositories to look in.  It helps
-you filter out non-source files that also exist in those directoroies, so you can find what you are
+you filter out non-source files that also exist in those directories, so you can find what you are
 looking for.
 
 # EXAMPLE
@@ -90,7 +90,7 @@ What I would really like to do, is something like this:
 
 ```shell
 # ~/git
-$ find-sources 'index*' kkrull.github.com bitovi.github.com
+$ fs 'index*' kkrull.github.com bitovi.github.com
 Pattern matches 99 files
 bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/index.tsx
 bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/scenes/CatalogItem/index.ts
