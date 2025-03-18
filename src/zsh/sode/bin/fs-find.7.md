@@ -4,8 +4,7 @@
 
 # DESCRIPTION
 
-**fs** helps you search for source files among several Git repositories that you have
-cloned.
+**fs-find** helps you search for source files among several Git repositories that you have cloned.
 
 This is useful when you don't know ahead of time which specific repositories to look in.  It helps
 you filter out non-source files that also exist in those directories, so you can find what you are
@@ -90,7 +89,7 @@ What I would really like to do, is something like this:
 
 ```shell
 # ~/git
-$ fs 'index*' kkrull.github.com bitovi.github.com
+$ sode fs find 'index*' kkrull.github.com bitovi.github.com
 Pattern matches 99 files
 bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/index.tsx
 bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/scenes/CatalogItem/index.ts
@@ -99,3 +98,7 @@ kkrull.github.com/node-sandbox/conway-js/src/index.js
 kkrull.github.com/node-sandbox/conway-ts/src/index.ts
 kkrull.github.com/node-sandbox/node-executable/greeter-lib/index.js
 ```
+
+# SEE ALSO
+
+[*sode(1)*](./sode.1.md),

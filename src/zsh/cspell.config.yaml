@@ -22,9 +22,13 @@ words:
   - datadirpkg
   - frontends
   - fscmd
+  - Groff
   - INSTALLFLAGS
   - libexecdirpkg
+  - Pandoc
   - sode
+  - soundcloud
+  - soundcloudcmd
   - sourcecmd
   - versionfile
   - zparseopts

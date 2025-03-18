@@ -45,6 +45,11 @@ function main() {
     exec "$_SODE_HOME/bin/fs.zsh" "$@"
     ;;
 
+  'soundcloud')
+    shift 1
+    exec "$_SODE_HOME/bin/soundcloud.zsh" "$@"
+    ;;
+
   *)
     echo "Unknown command: $command"
     exit 1
@@ -64,6 +69,7 @@ OPTIONS
 
 COMMANDS
 fs            Hack the local file system
+soundcloud    Hack SoundCloud
 
 See \`man ${_SODE_INVOCATION// /-}\` for details.
 EOF
