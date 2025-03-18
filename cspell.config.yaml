@@ -19,8 +19,13 @@ version: "0.2"
 words:
   - autoupdate
   - checkmake
+  - datadirpkg
+  - direnv
+  - envrc
   - kkrull
   - Krull
+  - libexecdirpkg
+  - Makefiles
   - NOTPARALLEL
   - shellcheck
   - sode
