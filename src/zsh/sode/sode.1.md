@@ -9,7 +9,7 @@ man-pages reference: https://linux.die.net/man/7/man-pages
 # SYNOPSIS
 
 **sode** \[**--help**\] \[**--version**\]
-**sode fs** *sub-command* \[*args* …\]
+**sode** *command* \[*args* …\]
 
 # DESCRIPTION
 
@@ -26,8 +26,11 @@ Run the **sode** *command* with any *args*, to do something useful. See
 
 # COMMANDS
 
-  - [**fs**](./fs.1.md)
+  - [**fs**](./bin/fs.1.md)
     Hack the local file system
+
+  - [**soundcloud**](./bin/soundcloud.1.md)
+    Hack SoundCloud
 
 # EXIT STATUS
 
@@ -40,5 +43,6 @@ Run the **sode** *command* with any *args*, to do something useful. See
 # SEE ALSO
 
 [*fs(1)*](./bin/fs.1.md),
+[*soundcloud(1)*](./bin/soundcloud.1.md),
 
 [*sode(7)*](./sode.7.md)

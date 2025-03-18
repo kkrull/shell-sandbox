@@ -1,4 +1,4 @@
-#. ==Shell Sandbox==
+#. ==zsh==
 
 .PHONY: default
 default: all

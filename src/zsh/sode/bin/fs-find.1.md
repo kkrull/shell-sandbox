@@ -35,7 +35,6 @@ sode fs find 'Makefile' ~/git
 
 # SEE ALSO
 
-[*sode(1)*](../sode.1.md)
-[*fs(1)*](./fs.1.md)
+[*sode(1)*](../sode.1.md), [*fs(1)*](./fs.1.md)
 
 [*sode(7)*](../sode.7.md)

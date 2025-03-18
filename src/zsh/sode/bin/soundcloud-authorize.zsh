@@ -24,9 +24,9 @@ function main() {
     exit 0
   fi
 
-  #TODO KDK: Get clientId et al from environment (e.g. direnv local)
-  clientId='clientId:bogus'
-  clientSecret='clientSecret:bogus'
+  #TODO KDK: Fail if these variables are unset, or provide a default
+  clientId="$CLIENT_ID"
+  clientSecret="$CLIENT_SECRET"
   _soundcloudcmd_authorize "$clientId" "$clientSecret"
 }
 
@@ -34,7 +34,7 @@ function print_usage() {
   cat >&2 <<-EOF
 USAGE
 $_SODE_INVOCATION --help
-$_SODE_INVOCATION <pattern> <path> [...]
+$_SODE_INVOCATION
 
 OPTIONS
 --help        Show help
