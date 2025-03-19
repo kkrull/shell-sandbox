@@ -32,13 +32,12 @@ function main() {
     exit 1
   fi
 
-  #TODO KDK: Use an existing valid token or a refresh token before asking for another one
-  local sode_config_dir
-  sode_config_dir=$(_sode_config_dir)
-  mkdir -m 700 -p "$sode_config_dir"
+  local token_response_file
+  token_response_file=$(_soundcloud_oauth_token_file)
 
-  local token_response_file="${sode_config_dir}/soundcloud-token-response.json"
+  #TODO KDK: Use an existing valid token or a refresh token before asking for another one
   # _soundcloudcmd_authorize "$token_response_file" "$CLIENT_ID" "$CLIENT_SECRET"
+
   echo "Saved response in: ${token_response_file}"
 }
 
