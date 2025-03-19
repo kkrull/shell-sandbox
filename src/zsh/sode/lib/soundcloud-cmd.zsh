@@ -13,6 +13,7 @@ function _soundcloudcmd_authorize() {
     --create-file-mode 0600 \
     --fail \
     --output "$response_file" \
+    --silent \
     --user "${clientId}:${clientSecret}" \
     --data-urlencode "grant_type=client_credentials" \
     -H "accept: application/json; charset=utf-8" \

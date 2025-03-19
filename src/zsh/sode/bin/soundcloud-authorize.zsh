@@ -32,9 +32,9 @@ function main() {
     exit 1
   fi
 
-  #TODO KDK: Save token and check if it is current, or if a refresh token can be used
+  #TODO KDK: Use an existing valid token or a refresh token before asking for another one
   local token_response_file=".soundcloud-token-response.json"
-  _soundcloudcmd_authorize "$token_response_file" "$CLIENT_ID" "$CLIENT_SECRET" "-v"
+  _soundcloudcmd_authorize "$token_response_file" "$CLIENT_ID" "$CLIENT_SECRET"
   echo "Saved response in: ${token_response_file}"
 }
 
