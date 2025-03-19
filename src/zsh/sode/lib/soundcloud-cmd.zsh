@@ -4,9 +4,10 @@
 function _soundcloudcmd_authorize() {
   local clientId="$1" ; shift 1
   local clientSecret="$1" ; shift 1
-
-  echo "_soundcloudcmd_authorize: clientId=${clientId}, clientSecret=${clientSecret}"
   local token_endpoint='https://secure.soundcloud.com/oauth/token'
+
+  # SoundCloud client_credentials flow: https://developers.soundcloud.com/docs#authentication
+  # cURL user to Authorization header: https://stackoverflow.com/a/20814679/112682
   curl "$token_endpoint" \
     --user "${clientId}:${clientSecret}" \
     --data-urlencode "grant_type=client_credentials" \
