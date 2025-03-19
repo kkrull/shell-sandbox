@@ -32,6 +32,7 @@ function main() {
     exit 1
   fi
 
+  #TODO KDK: Save the token in home directory, so it's found no matter where invoked
   #TODO KDK: Use an existing valid token or a refresh token before asking for another one
   local token_response_file=".soundcloud-token-response.json"
   _soundcloudcmd_authorize "$token_response_file" "$CLIENT_ID" "$CLIENT_SECRET"
