@@ -32,9 +32,8 @@ function main() {
     exit 1
   fi
 
-  clientId="${CLIENT_ID:-missing-client-id}"
-  clientSecret="${CLIENT_SECRET:-missing-client-secret}"
-  _soundcloudcmd_authorize "$clientId" "$clientSecret"
+  #TODO KDK: Save token and check if it is current, or if a refresh token can be used
+  _soundcloudcmd_authorize "$CLIENT_ID" "$CLIENT_SECRET" "-v"
 }
 
 function print_usage() {
