@@ -22,11 +22,18 @@ function main() {
   then
     print_usage
     exit 0
+  elif [[ "$CLIENT_ID" == "" ]]
+  then
+    printf "Missing: CLIENT_ID"
+    exit 1
+  elif [[ "$CLIENT_SECRET" == "" ]]
+  then
+    printf "Missing: CLIENT_SECRET"
+    exit 1
   fi
 
-  #TODO KDK: Fail if these variables are unset, or provide a default
-  clientId="$CLIENT_ID"
-  clientSecret="$CLIENT_SECRET"
+  clientId="${CLIENT_ID:-missing-client-id}"
+  clientSecret="${CLIENT_SECRET:-missing-client-secret}"
   _soundcloudcmd_authorize "$clientId" "$clientSecret"
 }
 

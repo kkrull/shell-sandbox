@@ -3,5 +3,6 @@
 
 ## SoundCloud API
 
+# Fill in values from https://soundcloud.com/you/apps
 export CLIENT_ID='unset-client-id'
 export CLIENT_SECRET='unset-client-secret'
