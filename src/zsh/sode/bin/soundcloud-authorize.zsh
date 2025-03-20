@@ -37,6 +37,7 @@ function main() {
 
   #TODO KDK: Use an existing valid token or a refresh token before asking for another one
   # _soundcloudcmd_authorize "$token_response_file" "$CLIENT_ID" "$CLIENT_SECRET"
+  _soundcloud_save_token "$token_response_file"
 
   echo "Saved response in: ${token_response_file}"
 }
