@@ -38,6 +38,6 @@ CLIENT_ID=client-secret CLIENT_SECRET=client-secret soundcloud-authorize
 
 # SEE ALSO
 
-[*sode(1)*](../sode.1.md), [*soundcloud(1)*](./soundcloud.1.md)
+[*sode(1)*](./sode.1.md), [*sode-soundcloud(1)*](./sode-soundcloud.1.md)
 
-[*sode(7)*](../sode.7.md)
+[*sode(7)*](./sode.7.md)

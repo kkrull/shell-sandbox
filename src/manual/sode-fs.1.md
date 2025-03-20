@@ -31,7 +31,7 @@
 
 # SEE ALSO
 
-[*sode(1)*](../sode.1.md)
-[*fs-find(1)*](./fs-find.1.md),
+[*sode(1)*](./sode.1.md)
+[*sode-fs-find(1)*](./sode-fs-find.1.md),
 
-[*sode(7)*](../sode.7.md)
+[*sode(7)*](./sode.7.md)

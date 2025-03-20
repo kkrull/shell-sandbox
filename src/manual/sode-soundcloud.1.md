@@ -39,7 +39,7 @@
 
 # SEE ALSO
 
-[*sode(1)*](../sode.1.md)
-[*soundcloud-authorize(1)*](./soundcloud-authorize.1.md),
+[*sode(1)*](./sode.1.md)
+[*sode-soundcloud-authorize(1)*](./sode-soundcloud-authorize.1.md),
 
-[*sode(7)*](../sode.7.md)
+[*sode(7)*](./sode.7.md)

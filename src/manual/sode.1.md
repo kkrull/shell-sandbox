@@ -42,7 +42,7 @@ Run the **sode** *command* with any *args*, to do something useful. See
 
 # SEE ALSO
 
-[*fs(1)*](./bin/fs.1.md),
-[*soundcloud(1)*](./bin/soundcloud.1.md),
+[*sode-fs(1)*](./sode-fs.1.md),
+[*sode-soundcloud(1)*](./sode-soundcloud.1.md),
 
 [*sode(7)*](./sode.7.md)
