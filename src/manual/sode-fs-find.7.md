@@ -38,61 +38,75 @@ work in `find`.
 
 I can run `find` over 1 or more organizations using readily available commands:
 
-  # git/kkrull.github.com
-  find . -type f -name 'index*'
+```shell
+# git/kkrull.github.com
+find . -type f -name 'index*'
+```
 
 What I'm looking for are files like these:
 
-  # Files I muse have worked on recently (3)
-  ./node-sandbox/conway-js/src/index.js
-  ./node-sandbox/conway-ts/src/index.ts
-  ./node-sandbox/node-executable/greeter-lib/index.js
+```shell
+# Files I muse have worked on recently (3)
+./node-sandbox/conway-js/src/index.js
+./node-sandbox/conway-ts/src/index.ts
+./node-sandbox/node-executable/greeter-lib/index.js
+```
 
 ### Filter out false positives
 
 There are also a lot of false positives.  The most distracting ones are the
 non-source files that match this same pattern:
 
-  # git internals (29)
-  ./bambam/.git/index
-  
-  # files downloaded by package managers (1450)
-  ./bambam/node\_modules/@colors/colors/index.d.ts
+```shell
+# git internals (29)
+./bambam/.git/index
+
+# files downloaded by package managers (1450)
+./bambam/node\_modules/@colors/colors/index.d.ts
+```
 
 There are also a few false negatives from real source files that match my
 imperfect search pattern. There are a few, but it is not quite as distracting:
 
-  # wrong file extension (15)
-  ./blog-apprenticeship/index.md # (2)
-  ./java-sandbox/hibernate/hibernate.webapp/src/main/webapp/index.jsp # (2)
-  ./java-sandbox/jetty/src/main/webapp/index.html # (11)
+```shell
+# wrong file extension (15)
+./blog-apprenticeship/index.md # (2)
+./java-sandbox/hibernate/hibernate.webapp/src/main/webapp/index.jsp # (2)
+./java-sandbox/jetty/src/main/webapp/index.html # (11)
+```
 
 I can refine my command by filtering out false positives, but it's a somewhat
 clunky process:
 
-  find . -type f -name 'index*' | sort | grep -v '.git' | grep -v node_modules
+```shell
+find . -type f -name 'index*' | sort | grep -v '.git' | grep -v node_modules
+```
 
 or better yet:
 
-  # ~/git
-  find bitovi.github.com kkrull.github.com -type f \
-    -name 'index[.][jt]s' -or -name 'index[.][jt]sx' \
-    | grep -v '[.]git/' \
-    | grep -v 'node\_modules'
+```shell
+# ~/git
+find bitovi.github.com kkrull.github.com -type f \
+  -name 'index[.][jt]s' -or -name 'index[.][jt]sx' \
+  | grep -v '[.]git/' \
+  | grep -v 'node\_modules'
+```
 
 ### A new tool could help
 
 What I would really like to do, is something like this:
 
-  # ~/git
-  $ sode fs find 'index*' kkrull.github.com bitovi.github.com
-  Pattern matches 99 files
-  bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/index.tsx
-  bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/scenes/CatalogItem/index.ts
-  ...
-  kkrull.github.com/node-sandbox/conway-js/src/index.js
-  kkrull.github.com/node-sandbox/conway-ts/src/index.ts
-  kkrull.github.com/node-sandbox/node-executable/greeter-lib/index.js
+```shell
+# ~/git
+$ sode fs find 'index*' kkrull.github.com bitovi.github.com
+Pattern matches 99 files
+bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/index.tsx
+bitovi.github.com/enterprise-grade-micro-frontends/packages/catalog/src/scenes/CatalogItem/index.ts
+...
+kkrull.github.com/node-sandbox/conway-js/src/index.js
+kkrull.github.com/node-sandbox/conway-ts/src/index.ts
+kkrull.github.com/node-sandbox/node-executable/greeter-lib/index.js
+```
 
 # SEE ALSO
 

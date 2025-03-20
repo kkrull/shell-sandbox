@@ -25,7 +25,7 @@ This is a necessary first step to using the API.
 
 # ENVIRONMENT VARIABLES
 
-See [*soundcloud(1)*](./soundcloud.1.md).
+See [*sode-soundcloud(1)*](./sode-soundcloud.1.md).
 
 # EXIT STATUS
 
@@ -37,7 +37,7 @@ See [*soundcloud(1)*](./soundcloud.1.md).
 
 # EXAMPLE
 
-  CLIENT\_ID=client-secret CLIENT\_SECRET=client-secret sodesoundcloud authorize
+    CLIENT_ID=client-secret CLIENT_SECRET=client-secret sodesoundcloud authorize
 
 # SEE ALSO
 

@@ -33,7 +33,7 @@ compatible with `find`.
 
 ## Look up Makefiles in local repositories
 
-  sode fs find 'Makefile' ~/git
+    sode fs find 'Makefile' ~/git
 
 # SEE ALSO
 
