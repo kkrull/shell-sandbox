@@ -119,7 +119,12 @@ uninstall: #> Uninstall manuals
 
 .PHONY: debug
 .NOTPARALLEL: debug
-debug: debug-artifacts debug-paths debug-programs debug-sources #> Show debugging information
+debug: _debug-prefix debug-artifacts debug-paths debug-programs debug-sources #> Show debugging information
+	@:
+
+.PHONY: _debug-prefix
+_debug-prefix:
+	$(info ==Manuals==)
 	@:
 
 .PHONY: install-tools

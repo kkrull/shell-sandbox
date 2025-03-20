@@ -19,7 +19,7 @@ debug-programs:
 ## Project
 
 # https://stackoverflow.com/a/17845120/112682
-SUBDIRS := src/zsh
+SUBDIRS := src/manual src/zsh
 
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):
