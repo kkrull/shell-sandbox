@@ -1,10 +1,14 @@
+% SODE(1) Version 0.0.2 | BRODE SODE
+% Kyle Krull
+% March 2025
+
 # NAME
 
 **sode soundcloud** - Hack SoundCloud
 
 # SYNOPSIS
 
-**sode soundcloud** \[**--help**\]
+**sode soundcloud** \[**\-\-help**\]  
 **sode soundcloud** *sub-command* \[*args* …\]
 
 # DESCRIPTION
@@ -13,7 +17,7 @@
 
 # OPTIONS
 
-  - **--help**
+  - **\-\-help**
     Show help
 
 # SUB-COMMANDS

@@ -1,19 +1,24 @@
+% SODE(1) Version 0.0.2 | BRODE SODE
+% Kyle Krull
+% March 2025
+
 # NAME
 
 **sode fs** - Hack the local file system
 
 # SYNOPSIS
 
-**sode fs** \[**--help**\]
+**sode fs** \[**\-\-help**\]  
 **sode fs** *sub-command* \[*args* …\]
 
 # DESCRIPTION
 
-**sode fs** runs the given *sub-command* with any *args*, to do something with the local filesystem.
+**sode fs** runs the given *sub-command* with any *args*, to do something with
+the local filesystem.
 
 # OPTIONS
 
-  - **--help**
+  - **\-\-help**
     Show help
 
 # SUB-COMMANDS

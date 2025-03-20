@@ -1,20 +1,24 @@
+% SODE(1) Version 0.0.2 | BRODE SODE
+% Kyle Krull
+% March 2025
+
 # NAME
 
 **sode fs find** - Find source files
 
 # SYNOPSIS
 
-**sode fs find** \[**--help**\]
+**sode fs find** \[**\-\-help**\]  
 **sode fs find** *glob pattern* \[*path* …\]
 
 # DESCRIPTION
 
-List filenames matching *glob pattern* in each *path*.  Glob patterns are those compatible with
-`find`.
+List filenames matching *glob pattern* in each *path*.  Glob patterns are those
+compatible with `find`.
 
 # OPTIONS
 
-  - **--help**
+  - **\-\-help**
     Show help
 
 # EXIT STATUS
@@ -29,9 +33,7 @@ List filenames matching *glob pattern* in each *path*.  Glob patterns are those 
 
 ## Look up Makefiles in local repositories
 
-```shell
-sode fs find 'Makefile' ~/git
-```
+  sode fs find 'Makefile' ~/git
 
 # SEE ALSO
 

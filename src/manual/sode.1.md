@@ -1,3 +1,7 @@
+% SODE(1) Version 0.0.2 | BRODE SODE
+% Kyle Krull
+% March 2025
+
 <!---
 man-pages reference: https://linux.die.net/man/7/man-pages
 -->
@@ -8,7 +12,7 @@ man-pages reference: https://linux.die.net/man/7/man-pages
 
 # SYNOPSIS
 
-**sode** \[**--help**\] \[**--version**\]
+**sode** \[**\-\-help**\] \[**\-\-version**\]  
 **sode** *command* \[*args* …\]
 
 # DESCRIPTION
@@ -18,10 +22,10 @@ Run the **sode** *command* with any *args*, to do something useful. See
 
 # OPTIONS
 
-  - **--help**
+  - **\-\-help**
     Show help
 
-  - **--version**
+  - **\-\-version**
     Prints the **sode** suite version that the program came from
 
 # COMMANDS

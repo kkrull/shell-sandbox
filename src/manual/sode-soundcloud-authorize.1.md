@@ -1,21 +1,26 @@
+% SODE(1) Version 0.0.2 | BRODE SODE
+% Kyle Krull
+% March 2025
+
 # NAME
 
 **sode soundcloud authorize** - Authorize with SoundCloud
 
 # SYNOPSIS
 
-**sode soundcloud authorize** \[**--help**\]
+**sode soundcloud authorize** \[**\-\-help**\]  
 **sode soundcloud authorize**
 
 # DESCRIPTION
 
-**sode soundcloud authorize** authorizes use of the SoundCloud API, for your account.
+**sode soundcloud authorize** authorizes use of the SoundCloud API, for your
+account.
 
 This is a necessary first step to using the API.
 
 # OPTIONS
 
-  - **--help**
+  - **\-\-help**
     Show help
 
 # ENVIRONMENT VARIABLES
@@ -32,9 +37,7 @@ See [*soundcloud(1)*](./soundcloud.1.md).
 
 # EXAMPLE
 
-```shell
-CLIENT_ID=client-secret CLIENT_SECRET=client-secret soundcloud-authorize
-```
+  CLIENT\_ID=client-secret CLIENT\_SECRET=client-secret sodesoundcloud authorize
 
 # SEE ALSO
 
