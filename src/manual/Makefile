@@ -86,10 +86,7 @@ watch: #> Emit rendered manuals when Pandoc sources change
 		| xargs -I {} echo "$(PANDOC) {} $(PANDOCFLAGS) -s -t man | $(MANDOC)" \
 		| sh
 
-groff:
-	mkdir -p $@
-
-groff/%: pandoc/%.md | groff
+%: %.md
 	$(PANDOC) $< $(PANDOCFLAGS) -o $@ -s -t man
 
 #. STANDARD TARGETS
