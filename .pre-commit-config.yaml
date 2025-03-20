@@ -11,6 +11,7 @@ repos:
     rev: v0.17.2
     hooks:
       - id: markdownlint-cli2
+        exclude: .*[.][1-7][.]md$
 
   # https://github.com/mrtazz/checkmake#pre-commit-usage
   - repo: https://github.com/mrtazz/checkmake.git
@@ -40,3 +41,14 @@ repos:
     rev: v0.10.0.1
     hooks:
       - id: shellcheck
+        alias: shellcheck-bash
+        exclude: src/zsh
+        name: shellcheck [bash]
+        args:
+        - --rcfile=src/bash/.shellcheckrc
+      - id: shellcheck
+        alias: shellcheck-zsh
+        exclude: src/bash
+        name: shellcheck [zsh]
+        args:
+        - --rcfile=src/zsh/.shellcheckrc

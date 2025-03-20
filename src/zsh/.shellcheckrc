@@ -2,4 +2,4 @@
 # https://www.shellcheck.net/wiki/Ignore
 
 shell=bash #zsh not directly supported, but overlaps a lot with bash
-disable=SC1090,SC1091 #Unable to follow non-constant source
+disable=SC1090,SC1091,SC2174

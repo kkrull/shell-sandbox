@@ -1,0 +1,8 @@
+root = false
+
+## Markdown for Pandoc / Groff (e.g. manual pages)
+
+[*.md]
+indent_size = off
+max_line_length = off
+trim_trailing_whitespace = false

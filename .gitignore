@@ -1,2 +1,13 @@
+## Direnv
+
+# Machine-specific configuration
+.envrc.local
+
+## SoundCloud
+
+#Authorization
+.soundcloud-token-response.json
+
 ## VS Code
+
 *.code-workspace
