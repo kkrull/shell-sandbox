@@ -24,8 +24,8 @@ debug-sources:
 
 ## Artifacts
 
-objects_man1 := $(patsubst pandoc/%.md,groff/%,$(sources_man1))
-objects_man7 := $(patsubst pandoc/%.md,groff/%,$(sources_man7))
+objects_man1 := $(patsubst %.md,%,$(sources_man1))
+objects_man7 := $(patsubst %.md,%,$(sources_man7))
 
 .PHONY: debug-artifacts
 debug-artifacts:
