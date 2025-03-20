@@ -92,7 +92,7 @@ groff/%: pandoc/%.md | groff
 
 #. STANDARD TARGETS
 
-groff_manual_installed := $(wildcard $(man1dir)/sode* $(man7dir)/sode*)
+artifacts_installed := $(wildcard $(man1dir)/sode* $(man7dir)/sode*)
 
 .PHONY: all
 all: $(objects_man1) $(objects_man7) #> Build manuals
@@ -113,7 +113,7 @@ test:
 
 .PHONY: uninstall
 uninstall: #> Uninstall manuals
-	$(RM) $(groff_manual_installed)
+	$(RM) $(artifacts_installed)
 
 #. SUPPORT TARGETS
 
