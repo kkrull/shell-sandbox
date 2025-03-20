@@ -127,6 +127,10 @@ _debug-prefix:
 	$(info ==Manuals==)
 	@:
 
+.PHONY: install-assets
+install-assets:
+	@:
+
 .PHONY: install-tools
 install-tools:
 	@:
