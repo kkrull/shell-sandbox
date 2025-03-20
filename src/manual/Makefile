@@ -73,7 +73,7 @@ debug-programs:
 	$(info - PANDOCFLAGS: $(PANDOCFLAGS))
 	@:
 
-#. GROFF MANUAL TARGETS
+#. GROFF TARGETS
 
 .PHONY: preview
 preview: #> Render manuals without building or installing
