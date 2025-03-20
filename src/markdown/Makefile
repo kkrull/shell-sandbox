@@ -6,7 +6,7 @@
 .PHONY: default
 default: all
 
-include ../../make.d/help.mk
+include ../../make.d/help.mk ../../make.d/paths-system.mk
 
 ### Sources
 
@@ -24,19 +24,20 @@ debug-sources:
 
 ## Artifacts
 
+groff_man1_objects := $(patsubst pandoc/%.md,groff/%,$(sources_man1))
+groff_man7_objects := $(patsubst pandoc/%.md,groff/%,$(sources_man7))
+
+.PHONY: debug-artifacts
+debug-artifacts:
+	$(info Artifacts:)
+	$(info - groff_man1_objects: $(groff_man1_objects))
+	$(info - groff_man7_objects: $(groff_man7_objects))
+	@:
+
 ### Paths
 
 prefix ?= /usr/local
 datarootdir := $(prefix)/share
-mandir := $(datarootdir)/man
-
-man1dir := $(mandir)/man1
-$(man1dir):
-	mkdir -p $@
-
-man7dir := $(mandir)/man7
-$(man7dir):
-	mkdir -p $@
 
 .PHONY: debug-paths
 debug-paths:
@@ -50,49 +51,35 @@ debug-paths:
 
 ## Programs
 
+FSWATCH ?= fswatch
+
+INSTALL := install
+INSTALLFLAGS := -g 0 -o 0
+
+MANDOC ?= mandoc
 PANDOC ?= pandoc
 PANDOCFLAGS := -f markdown+definition_lists+line_blocks
 
-#. GROFF MANUAL TARGETS
-
-FSWATCH ?= fswatch
-MANDOC ?= mandoc
-
-groff_manual_installed := $(wildcard $(man1dir)/marmot* $(man7dir)/marmot*)
-groff_man1_objects := $(patsubst pandoc/%.md,groff/%,$(sources_man1))
-groff_man7_objects := $(patsubst pandoc/%.md,groff/%,$(sources_man7))
-
-.PHONY: debug-groff-manual
-debug-groff-manual:
-	$(info Groff Manual:)
-	$(info - groff_man1_objects: $(groff_man1_objects))
-	$(info - groff_man7_objects: $(groff_man7_objects))
-	$(info - groff_manual_installed: $(groff_manual_installed))
+.PHONY: debug-programs
+debug-programs:
+	$(info Programs:)
+	$(info - FSWATCH: $(FSWATCH))
+	$(info - INSTALL: $(INSTALL))
+	$(info - INSTALLFLAGS: $(INSTALLFLAGS))
+	$(info - MANDOC: $(MANDOC))
+	$(info - PANDOC: $(PANDOC))
+	$(info - PANDOCFLAGS: $(PANDOCFLAGS))
 	@:
 
-.PHONY: groff-manual
-groff-manual: $(groff_man1_objects) $(groff_man7_objects) #> Build man pages
+#. GROFF MANUAL TARGETS
 
-.PHONY: groff-manual-clean
-groff-manual-clean: #> Remove built man pages
-	$(RM) groff/**
-
-.PHONY: groff-manual-install
-groff-manual-install: $(groff_man1_objects) $(groff_man7_objects) | $(man1dir) $(man7dir) #> Install man pages
-	install -g 0 -o 0 -m 0644 $(groff_man1_objects) $(man1dir)
-	install -g 0 -o 0 -m 0644 $(groff_man7_objects) $(man7dir)
-
-.PHONY: groff-manual-preview
-groff-manual-preview: #> Render man pages without building or installing
+.PHONY: preview
+preview: #> Render manuals without building or installing
 	$(PANDOC) $(sources) $(PANDOCFLAGS) -s -t man \
 		| $(MANDOC)
 
-.PHONY: groff-manual-uninstall
-groff-manual-uninstall: #> Uninstall man pages
-	$(RM) $(groff_manual_installed)
-
-.PHONY: groff-manual-watch
-groff-manual-watch: #> Emit rendered man pages when Pandoc sources change
+.PHONY: watch
+watch: #> Emit rendered manuals when Pandoc sources change
 	$(FSWATCH) $(sources) \
 		| xargs -I {} echo "$(PANDOC) {} $(PANDOCFLAGS) -s -t man | $(MANDOC)" \
 		| sh
@@ -105,31 +92,34 @@ groff/%: pandoc/%.md | groff
 
 #. STANDARD TARGETS
 
+groff_manual_installed := $(wildcard $(man1dir)/sode* $(man7dir)/sode*)
+
 .PHONY: all
-all: groff-manual #> Build all manuals
+all: $(groff_man1_objects) $(groff_man7_objects) #> Build manuals
 	@:
 
 .PHONY: clean
-clean: groff-manual-clean #> Remove local build files
-	@:
+clean: #> Remove local build files
+	$(RM) groff/**
 
 .PHONY: install
-install: groff-manual-install #> Install man pages to $(mandir)
-	@:
+install: $(groff_man1_objects) $(groff_man7_objects) | $(man1dir) $(man7dir) #> Install manuals to $(mandir)
+	install -g 0 -o 0 -m 0644 $(groff_man1_objects) $(man1dir)
+	install -g 0 -o 0 -m 0644 $(groff_man7_objects) $(man7dir)
 
 .PHONY: test
 test:
 	@:
 
 .PHONY: uninstall
-uninstall: groff-manual-uninstall #> Uninstall man pages
-	@:
+uninstall: #> Uninstall manuals
+	$(RM) $(groff_manual_installed)
 
 #. SUPPORT TARGETS
 
 .PHONY: debug
 .NOTPARALLEL: debug
-debug: debug-paths debug-sources debug-groff-manual #> Show debugging information
+debug: debug-artifacts debug-paths debug-programs debug-sources #> Show debugging information
 	@:
 
 .PHONY: install-tools
