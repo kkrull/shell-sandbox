@@ -24,12 +24,14 @@ debug-sources:
 
 ## Artifacts
 
+objects := $(patsubst %.md,%,$(sources))
 objects_man1 := $(patsubst %.md,%,$(sources_man1))
 objects_man7 := $(patsubst %.md,%,$(sources_man7))
 
 .PHONY: debug-artifacts
 debug-artifacts:
 	$(info Artifacts:)
+	$(info - objects: $(objects))
 	$(info - objects_man1: $(objects_man1))
 	$(info - objects_man7: $(objects_man7))
 	@:
@@ -95,7 +97,7 @@ groff/%: pandoc/%.md | groff
 artifacts_installed := $(wildcard $(man1dir)/sode* $(man7dir)/sode*)
 
 .PHONY: all
-all: $(objects_man1) $(objects_man7) #> Build manuals
+all: $(objects) #> Build manuals
 	@:
 
 .PHONY: clean
@@ -103,8 +105,14 @@ clean: #> Remove local build files
 	$(RM) groff/**
 
 .PHONY: install
-install: $(objects_man1) $(objects_man7) | $(man1dir) $(man7dir) #> Install manuals to $(mandir)
+install: install-man1 install-man7 #> Install manuals to $(mandir)
+
+.PHONY: install-man1
+install-man1: $(objects_man1) | $(man1dir)
 	install -g 0 -o 0 -m 0644 $(objects_man1) $(man1dir)
+
+.PHONY: install-man7
+install-man7: $(objects_man7) | $(man7dir)
 	install -g 0 -o 0 -m 0644 $(objects_man7) $(man7dir)
 
 .PHONY: test
