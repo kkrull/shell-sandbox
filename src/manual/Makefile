@@ -102,7 +102,7 @@ all: $(objects) #> Build manuals
 
 .PHONY: clean
 clean: #> Remove local build files
-	$(RM) groff/**
+	$(RM) $(objects)
 
 .PHONY: install
 install: install-man1 install-man7 #> Install manuals to $(mandir)
