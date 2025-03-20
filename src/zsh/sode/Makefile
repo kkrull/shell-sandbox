@@ -112,17 +112,20 @@ check: check-bindir check-datadir check-libexecdir #> Check if `make install` wo
 
 .PHONY: check-bindir
 check-bindir:
-	@[ -x $(bindir)/sode ] || ( echo "$(bindir)/sode: Missing or not executable"; exit 1 )
+	@[ -x $(bindir)/sode ] || \
+	 ( echo "$(bindir)/sode: Missing or not executable"; exit 1 )
 	@find $(bindir)/sode -exec stat -f "%N%SY" {} \;
 
 .PHONY: check-datadir
 check-datadir:
-	@[ -d $(datadirpkg) ] || ( echo "$(datadirpkg): Missing or not a directory"; exit 1 )
+	@[ -d $(datadirpkg) ] || \
+	 ( echo "$(datadirpkg): Missing or not a directory"; exit 1 )
 	@find $(datadirpkg) -type f | sort
 
 .PHONY: check-libexecdir
 check-libexecdir:
-	@[ -d $(libexecdirpkg) ] || ( echo "$(libexecdirpkg): Missing or not a directory"; exit 1 )
+	@[ -d $(libexecdirpkg) ] || \
+	 ( echo "$(libexecdirpkg): Missing or not a directory"; exit 1 )
 	@find $(libexecdirpkg) -type f | sort
 
 .PHONY: debug
