@@ -108,11 +108,13 @@ clean: #> Remove local build files
 install: install-man1 install-man7 #> Install manuals to $(mandir)
 
 .PHONY: install-man1
-install-man1: $(objects_man1) | $(man1dir)
+install-man1: $(objects_man1)
+	$(INSTALL) $(INSTALLFLAGS) -d $(man1dir)
 	install -g 0 -o 0 -m 0644 $(objects_man1) $(man1dir)
 
 .PHONY: install-man7
-install-man7: $(objects_man7) | $(man7dir)
+install-man7: $(objects_man7)
+	$(INSTALL) $(INSTALLFLAGS) -d $(man7dir)
 	install -g 0 -o 0 -m 0644 $(objects_man7) $(man7dir)
 
 .PHONY: test

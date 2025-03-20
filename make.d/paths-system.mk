@@ -21,14 +21,8 @@ $(datadirpkg):
 	mkdir -p $(datadirpkg)
 
 mandir := $(datarootdir)/man
-
 man1dir := $(mandir)/man1
-$(man1dir):
-	mkdir -p $@
-
 man7dir := $(mandir)/man7
-$(man7dir):
-	mkdir -p $@
 
 .PHONY: debug-system-paths
 debug-system-paths:
