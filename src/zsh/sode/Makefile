@@ -106,6 +106,28 @@ uninstall: #> Uninstall program
 
 #. SUPPORT TARGETS
 
+.PHONY: check
+check: check-bindir check-datadir check-libexecdir #> Check if `make install` worked
+	@:
+
+.PHONY: check-bindir
+check-bindir:
+	@[ -x $(bindir)/sode ] || \
+	 ( echo "$(bindir)/sode: Missing or not executable"; exit 1 )
+	@find $(bindir)/sode -exec stat -f "%N%SY" {} \;
+
+.PHONY: check-datadir
+check-datadir:
+	@[ -d $(datadirpkg) ] || \
+	 ( echo "$(datadirpkg): Missing or not a directory"; exit 1 )
+	@find $(datadirpkg) -type f | sort
+
+.PHONY: check-libexecdir
+check-libexecdir:
+	@[ -d $(libexecdirpkg) ] || \
+	 ( echo "$(libexecdirpkg): Missing or not a directory"; exit 1 )
+	@find $(libexecdirpkg) -type f | sort
+
 .PHONY: debug
 .NOTPARALLEL: debug
 debug: _debug-prefix debug-artifacts debug-paths debug-programs debug-sources #> Show debugging information
@@ -123,9 +145,3 @@ install-assets:
 .PHONY: install-tools
 install-tools:
 	@:
-
-.PHONY: test-install
-test-install: #> List installed files after running `make install`
-	ls -l $(bindir)/sode
-	find $(datadirpkg) -type f | sort
-	find $(libexecdirpkg) -type f | sort

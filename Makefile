@@ -19,7 +19,7 @@ debug-programs:
 ## Project
 
 # https://stackoverflow.com/a/17845120/112682
-SUBDIRS := src/zsh
+SUBDIRS := src/manual src/zsh
 
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):
@@ -48,7 +48,7 @@ install: $(SUBDIRS) #> Copy artifacts to shared location
 test: pre-commit-run $(SUBDIRS) #> Run tests
 
 .PHONY: uninstall
-uninstall: $(SUBDIRS)
+uninstall: $(SUBDIRS) #> Remove artifacts from shared location
 
 #. SUPPORT TARGETS
 
@@ -65,4 +65,4 @@ _debug-prefix:
 install-assets: $(SUBDIRS)
 
 .PHONY: install-tools
-install-tools: pre-commit-install $(SUBDIRS) #> Install development tools
+install-tools: pre-commit-install $(SUBDIRS)

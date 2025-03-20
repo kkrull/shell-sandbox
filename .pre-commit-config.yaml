@@ -11,7 +11,6 @@ repos:
     rev: v0.17.2
     hooks:
       - id: markdownlint-cli2
-        exclude: .*[.][1-7][.]md$
 
   # https://github.com/mrtazz/checkmake#pre-commit-usage
   - repo: https://github.com/mrtazz/checkmake.git
@@ -35,6 +34,7 @@ repos:
       - id: check-json
       - id: check-yaml
       - id: trailing-whitespace
+        exclude: '.*[.][1-8][.]md$'
 
   # https://github.com/shellcheck-py/shellcheck-py#as-a-pre-commit-hook
   - repo: https://github.com/shellcheck-py/shellcheck-py

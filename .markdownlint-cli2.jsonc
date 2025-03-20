@@ -17,6 +17,8 @@
   },
   "frontMatter": "^%[\\s\\S][^#]*",
   "ignores": [
-    ".shellcheckrc"
+    ".shellcheckrc",
+    "**/*.1.md",
+    "**/*.7.md"
   ]
 }

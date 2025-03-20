@@ -37,7 +37,6 @@ response_type='code'
 case "$mode" in
   'parsed')
     #Usage: ./01_authorize.sh | pbcopy
-    #TODO KDK: Add state parameter, to prevent attacks
     curl "${authorization_endpoint}?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}" \
       --dump-header - \
       --silent \

@@ -1,4 +1,4 @@
-#. ==zsh==
+#. ==zsh scripts==
 
 .PHONY: default
 default: all
@@ -41,7 +41,6 @@ all: $(SUBDIRS) #> Build all projects
 .PHONY: clean
 clean: $(SUBDIRS) #> Remove local build files
 
-#TODO KDK: Add targets to install manuals (or put that in an adjacent project)
 .PHONY: install
 install: $(SUBDIRS) #> Copy artifacts to shared location
 
@@ -49,7 +48,7 @@ install: $(SUBDIRS) #> Copy artifacts to shared location
 test: pre-commit-run $(SUBDIRS) #> Run tests
 
 .PHONY: uninstall
-uninstall: $(SUBDIRS)
+uninstall: $(SUBDIRS) #> Remove artifacts from shared location
 
 #. SUPPORT TARGETS
 
@@ -66,4 +65,4 @@ _debug-prefix:
 install-assets: $(SUBDIRS)
 
 .PHONY: install-tools
-install-tools: $(SUBDIRS) #> Install development tools
+install-tools: $(SUBDIRS)
